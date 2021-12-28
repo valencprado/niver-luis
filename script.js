@@ -1,36 +1,22 @@
-/*const debounce = function(func, wait, immediate) {
-    let timeout;
-    return function(...args) {
-        const context = this;
-        const later = function() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-    };
-};
+//tentativa de scroll reveal
 
-const target = document.querySelectorAll('[data-anime]');
-const animationClass = 'animate';
 
-function animeScroll() {
-    const windowTop = window.pageYOffset + ((window.innerHeight * 3) / 4);
-    target.forEach(function(element) {
-        if ((windowTop) > element.offsetTop) {
-            element.classList.add(animationClass);
+
+window.addEventListener('scroll', reveal)
+
+function reveal() {
+    var reveals = document.querySelectorAll('.reveal')
+
+    for (var i = 0; i < reveals.length; i++) {
+        var windowheight = window.innerHeight
+        var revealtop = reveals[i].getBoundingClientRect().top
+        var revealpoint = 150
+
+        if (revealtop < windowheight - revealpoint) {
+            reveals[i].classList.add('active')
+
         } else {
-            element.classList.remove(animationClass);
+            reveals[i].classList.remove('active')
         }
-    })
+    }
 }
-
-animeScroll();
-
-if (target.length) {
-    window.addEventListener('scroll', debounce(function() {
-        animeScroll();
-    }, 200));
-}*/
